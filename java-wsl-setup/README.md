@@ -33,6 +33,26 @@ This project uses SDKMAN!
     java -version
     echo $JAVA_HOME
     ```
+1. Configure VS Code for WSL + Maven. These VS Code settings are required to ensure the terminal loads the profile and Java is recognized by the Maven extension:
+    ```json
+    {
+        "terminal.integrated.profiles.linux": {
+            "bash": {
+                "path": "/bin/bash",
+                "args": [
+                    "-l"
+                ]
+            }
+        },
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "java.project.sourcePaths": [
+            ""
+        ]
+    }
+    ```
+* args: ["-l"] ensures the terminal runs as a login shell, loading ~/.profile where SDKMAN! and JAVA_HOME are defined.
+* terminal.integrated.defaultProfile.linux ensures all integrated terminals use Bash.
+* java.project.sourcePaths should be set according to your project structure.
 
 You should see the version installed via SDKMAN! and the correct JAVA_HOME path.
 
